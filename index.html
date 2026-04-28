@@ -10,7 +10,7 @@
         :root {
             --kr-red: #CD2E3A;
             --kr-blue: #0047A0;
-            --time-orange: #f97316; /* 顯眼亮橘色時間 */
+            --time-orange: #f97316; /* 顯眼橘色 */
             --bg: #f1f5f9;
             --card-bg: #ffffff;
             --text-main: #1e293b;
@@ -37,15 +37,15 @@
         }
         header h1 { font-size: 22px; font-weight: 900; line-height: 1.4; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
 
-        /* ── TOP 3 ICONS (採用 Emoji 確保永不破圖) ── */
+        /* ── TOP 3 ICONS (已修正為 Emoji 國旗) ── */
         .status-bar {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 16px; margin-top: -30px; position: relative; z-index: 10;
         }
         .status-item { background: white; padding: 15px 5px; border-radius: 14px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.9); }
-        .status-item .s-icon { font-size: 36px; display: block; margin-bottom: 5px; line-height: 1; }
+        .status-item .s-icon { font-size: 36px; display: block; margin-bottom: 5px; line-height: 1.2; }
         .status-item span { font-size: 11px; font-weight: 800; color: var(--kr-blue); display: block; }
 
-        /* ── 天氣 ── */
+        /* ── 天氣預報 ── */
         .weather-box { margin: 20px 16px 0; background: #fff; border-radius: var(--radius); padding: 15px; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .w-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 13px; font-weight: 900; }
         .w-list { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
@@ -73,7 +73,7 @@
         .day-title-text { font-size: 16px; font-weight: 900; letter-spacing: 0.5px; }
         .day-header-icon { font-size: 28px; margin-left: auto; }
 
-        /* ── 垂直時間軸 ── */
+        /* ── 行程垂直內容 ── */
         .timeline-wrap { padding: 0 16px; position: relative; }
         .timeline-wrap::before { content: ''; position: absolute; left: 36px; top: 0; bottom: 0; width: 2px; background: #e2e8f0; }
         
@@ -142,7 +142,7 @@
                 <div>
                     <span class="t-time">07:55</span>
                     <div class="t-title">桃園機場起飛🛫</div>
-                    <div class="t-desc">11:30 抵達釜山金海機場🛬，開啟包車模式。</div>
+                    <div class="t-desc">11:30 抵達釜山金海機場🛬，開啟包車行程。</div>
                 </div>
             </div>
         </div>
@@ -152,7 +152,7 @@
                 <div>
                     <span class="t-time">午餐</span>
                     <div class="t-title">密陽豬肉湯飯 (富平店)</div>
-                    <div class="t-desc">밀양순대돼지국밥 부評店用餐。</div>
+                    <div class="t-desc">밀양순대돼지국밥 부平店用餐。</div>
                 </div>
             </div>
         </div>
@@ -200,7 +200,7 @@
     <div class="day-header-box d-box-2">
         <div class="day-num-pill">DAY 2</div>
         <div class="day-title-text">5/01 (五) 海雲台休閒</div>
-        <div class="day-header-icon">🚿</div>
+        <div class="day-header-icon">🛀</div>
     </div>
     <div class="timeline-wrap">
         <div class="timeline-card">
