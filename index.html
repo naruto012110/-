@@ -10,7 +10,7 @@
         :root {
             --kr-red: #CD2E3A;
             --kr-blue: #0047A0;
-            --time-orange: #f97316; /* 顯眼橘色 */
+            --time-orange: #f97316; /* 顯眼亮橘色 */
             --bg: #f1f5f9;
             --card-bg: #ffffff;
             --text-main: #1e293b;
@@ -37,15 +37,19 @@
         }
         header h1 { font-size: 22px; font-weight: 900; line-height: 1.4; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
 
-        /* ── TOP 3 ICONS (已修正為 Emoji 國旗) ── */
+        /* ── TOP 3 ICONS (國旗修正版) ── */
         .status-bar {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 16px; margin-top: -30px; position: relative; z-index: 10;
         }
-        .status-item { background: white; padding: 15px 5px; border-radius: 14px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.9); }
-        .status-item .s-icon { font-size: 36px; display: block; margin-bottom: 5px; line-height: 1.2; }
+        .status-item { background: white; padding: 15px 5px; border-radius: 14px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.9); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        
+        /* 國旗繪圖代碼樣式 */
+        .flag-graphic { width: 45px; height: 30px; margin-bottom: 8px; border: 1px solid #eee; display: block; }
+        
+        .status-item .s-icon { font-size: 32px; display: block; margin-bottom: 5px; line-height: 1.2; }
         .status-item span { font-size: 11px; font-weight: 800; color: var(--kr-blue); display: block; }
 
-        /* ── 天氣預報 ── */
+        /* ── 天氣 ── */
         .weather-box { margin: 20px 16px 0; background: #fff; border-radius: var(--radius); padding: 15px; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .w-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 13px; font-weight: 900; }
         .w-list { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
@@ -57,7 +61,7 @@
         .w-rain { font-size: 10px; font-weight: 800; color: #ef4444; }
         .w-temp { font-size: 9px; color: var(--text-main); font-weight: 600; }
 
-        /* ── 每日標題漸層框 ── */
+        /* ── 每日大標題漸層 ── */
         .day-header-box {
             margin: 24px 16px 12px; padding: 14px 18px; border-radius: 15px; 
             display: flex; align-items: center; gap: 12px; color: white;
@@ -73,7 +77,7 @@
         .day-title-text { font-size: 16px; font-weight: 900; letter-spacing: 0.5px; }
         .day-header-icon { font-size: 28px; margin-left: auto; }
 
-        /* ── 行程垂直內容 ── */
+        /* ── 行程細節 ── */
         .timeline-wrap { padding: 0 16px; position: relative; }
         .timeline-wrap::before { content: ''; position: absolute; left: 36px; top: 0; bottom: 0; width: 2px; background: #e2e8f0; }
         
@@ -108,7 +112,17 @@
 
     <div class="status-bar">
         <div class="status-item">
-            <span class="s-icon">🇰🇷</span>
+            <svg class="flag-graphic" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+                <rect width="900" height="600" fill="#fff"/>
+                <circle cx="450" cy="300" r="150" fill="#CD2E3A"/>
+                <path d="M300 300a150 150 0 0 1 300 0 75 75 0 0 0-150 0 75 75 0 0 1-150 0z" fill="#0047A0"/>
+                <g transform="rotate(-56.31 450 300)">
+                    <path d="M235 240h20v120h-20zm30 0h20v120h-20zm30 0h20v120h-20zm310 0h20v55h-20zm0 65h20v55h-20zm30 0h20v120h-20zm30-120h20v55h-20zm0 65h20v55h-20z" fill="#000"/>
+                </g>
+                <g transform="rotate(56.31 450 300)">
+                    <path d="M235 240h20v55h-20zm0 65h20v55h-20zm30 0h20v55h-20zm0-65h20v55h-20zm30 0h20v55h-20zm0 65h20v55h-20zm310-65h20v55h-20zm0 65h20v55h-20zm30-65h20v55h-20zm0 65h20v55h-20zm30-65h20v55h-20zm0 65h20v55h-20z" fill="#000"/>
+                </g>
+            </svg>
             <span>韓國</span>
         </div>
         <div class="status-item">
@@ -142,7 +156,7 @@
                 <div>
                     <span class="t-time">07:55</span>
                     <div class="t-title">桃園機場起飛🛫</div>
-                    <div class="t-desc">11:30 抵達釜山金海機場🛬，開啟包車行程。</div>
+                    <div class="t-desc">11:30 抵達釜山金海機場🛬，包車接機。</div>
                 </div>
             </div>
         </div>
@@ -248,7 +262,7 @@
                 <div>
                     <span class="t-time">10:00</span>
                     <div class="t-title">10:00 退房+寄放行李出發換飯店</div>
-                    <div class="t-desc">11:00 前辦理退房。姊姊先現場去現場買膠囊小火車票！</div>
+                    <div class="t-desc">11:00 前辦理退房。姊姊先去現場買膠囊小火車票！</div>
                 </div>
             </div>
         </div>
@@ -266,8 +280,8 @@
                 <div class="icon-box bg-orange">🥣</div>
                 <div>
                     <span class="t-time">午餐</span>
-                    <div class="t-title">🥣 一等家일등가</div>
-                    <div class="t-desc">吃飽後去海邊咖啡、樂天超市購物、透明步道。</div>
+                    <div class="t-title">一等家일등가</div>
+                    <div class="t-desc">去海邊咖啡、樂天超市購物、透明步道。</div>
                 </div>
             </div>
         </div>
@@ -337,7 +351,7 @@
     </div>
 
     <div class="day-header-box d-box-5">
-        <div class="day-num-pill">DAY 5</div>
+        <div class="day-num-pill">DAY 2</div>
         <div class="day-title-text">5/04 (一) 最終衝刺回程</div>
         <div class="day-header-icon">🛀</div>
     </div>
@@ -348,7 +362,7 @@
                 <div>
                     <span class="t-time">11:00</span>
                     <div class="t-title">11:00 退房+寄放行李</div>
-                    <div class="t-desc">散步去買貝果、吃午餐 (待定)。</div>
+                    <div class="t-desc">步行去買貝果、吃午餐 (待定)。</div>
                 </div>
             </div>
         </div>
@@ -380,7 +394,7 @@
     </div>
 
     <div class="footer">
-        <div style="font-weight: 900; font-size: 16px; margin-bottom: 5px; color:white;">平安第一，玩得盡興 🇰🇷</div>
+        <div style="font-weight: 800; font-size: 15px; margin-bottom: 5px; color:white;">平安第一，玩得盡興 🇰🇷</div>
         韓國釜山-小孩2歲前出國最後衝刺放電 手冊2026
     </div>
 
@@ -390,32 +404,20 @@
     async function fetchWeather() {
         const LAT = 35.17, LON = 129.07;
         const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&forecast_days=7`;
-        
         try {
             const res = await fetch(url);
             const data = await res.json();
             document.getElementById('update-time').innerText = `最新更新：${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
-
             const list = document.getElementById('weather-list');
             list.innerHTML = '';
             const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
             const tripDates = ['2026-04-30', '2026-05-01', '2026-05-02', '2026-05-03', '2026-05-04'];
-
             data.daily.time.forEach((dStr, i) => {
                 const date = new Date(dStr);
                 const isTrip = tripDates.includes(dStr) ? 'active' : '';
                 const code = data.daily.weather_code[i];
                 let icon = '☀️'; if(code > 3) icon = '☁️'; if(code > 50) icon = '🌧️';
-
-                list.innerHTML += `
-                    <div class="w-col ${isTrip}">
-                        <div class="w-name">${weekdays[date.getDay()]}</div>
-                        <div class="w-date">${date.getMonth()+1}/${date.getDate()}</div>
-                        <div class="w-icon">${icon}</div>
-                        <div class="w-rain">${data.daily.precipitation_probability_max[i]}%</div>
-                        <div class="w-temp">${Math.round(data.daily.temperature_2m_max[i])}°/${Math.round(data.daily.temperature_2m_min[i])}°</div>
-                    </div>
-                `;
+                list.innerHTML += `<div class="w-col ${isTrip}"><div class="w-name">${weekdays[date.getDay()]}</div><div class="w-date">${date.getMonth()+1}/${date.getDate()}</div><div class="w-icon">${icon}</div><div class="w-rain">${data.daily.precipitation_probability_max[i]}%</div><div class="w-temp">${Math.round(data.daily.temperature_2m_max[i])}°/${Math.round(data.daily.temperature_2m_min[i])}°</div></div>`;
             });
         } catch(e) { }
     }
