@@ -8,16 +8,15 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
 
         :root {
-            --kr-red: #CD2E3A; /* 韓國紅 */
-            --kr-blue: #0047A0; /* 韓國藍 */
-            --primary: #0047A0;
-            --accent: #f59e0b;
-            --danger: #ef4444;
-            --bg: #f8fafc;
+            --kr-red: #CD2E3A;
+            --kr-blue: #0047A0;
+            --primary: #005596;
+            --bg: #f1f5f9;
             --card-bg: #ffffff;
             --text-main: #1e293b;
             --text-sub: #64748b;
             --border: #e2e8f0;
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
             --radius: 16px;
         }
 
@@ -25,59 +24,83 @@
         body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.6; }
         .app-container { max-width: 480px; margin: 0 auto; min-height: 100vh; padding-bottom: 48px; }
 
-        /* ── 標題區：韓國代表配色 ── */
+        /* ── HERO HEADER ── */
         header {
             position: relative;
-            background: linear-gradient(135deg, var(--kr-red) 0%, var(--kr-blue) 100%);
-            color: white; padding: 35px 24px 60px; overflow: hidden;
-            border-bottom: 5px solid #000000; /* 加入黑邊模仿國旗元素 */
+            background: linear-gradient(160deg, #003a66 0%, #005596 45%, #CD2E3A 100%);
+            color: white; padding: 40px 24px 65px; overflow: hidden;
         }
         .hero-content { position: relative; z-index: 2; }
         .header-badge {
             display: inline-flex; align-items: center; gap: 6px;
             background: rgba(255,255,255,0.2); border-radius: 20px; padding: 4px 12px; font-size: 12px; font-weight: 700; margin-bottom: 12px;
         }
-        header h1 { font-size: 24px; font-weight: 900; line-height: 1.4; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+        header h1 { font-size: 24px; font-weight: 900; line-height: 1.4; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
 
-        /* ── 狀態列 ── */
+        /* ── STATUS BAR ── */
         .status-bar {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 16px; margin-top: -25px; position: relative; z-index: 10;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 16px; margin-top: -30px; position: relative; z-index: 10;
         }
-        .status-item { background: white; padding: 12px 5px; border-radius: 14px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-size: 11px; font-weight: 800; color: var(--kr-blue); }
+        .status-item { background: white; padding: 14px 5px; border-radius: 14px; text-align: center; box-shadow: var(--shadow-md); border: 1px solid rgba(255,255,255,0.9); }
+        .status-item img { width: 32px; height: 32px; margin-bottom: 5px; }
+        .status-item .s-label { font-size: 11px; font-weight: 800; color: var(--primary); display: block; }
 
-        /* ── 天氣區塊 ── */
-        .weather-box { margin: 20px 16px 0; background: #fff; border-radius: var(--radius); padding: 15px; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .weather-title { font-size: 13px; font-weight: 900; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-        .update-time { font-size: 10px; color: var(--text-sub); font-weight: 400; }
-        .weather-current { background: #f1f5f9; border-radius: 12px; padding: 12px; display: flex; align-items: center; gap: 15px; margin-bottom: 12px; }
-        .weather-temp-now { font-size: 32px; font-weight: 900; color: var(--kr-blue); }
-        .weather-days { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
-        .w-day { text-align: center; padding: 8px 2px; border-radius: 8px; border: 1px solid #f1f5f9; font-size: 10px; }
-        .w-day.active { background: #e0f2fe; border-color: #7dd3fc; }
-        .w-rain { color: #3b82f6; font-weight: 800; font-size: 9px; }
-        .w-hi-lo { font-size: 9px; color: #475569; }
+        /* ── WEATHER SECTION (復刻版) ── */
+        .weather-section { margin: 16px 16px 0; }
+        .weather-title { font-size: 13px; font-weight: 800; color: var(--primary); margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .weather-current-card {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            border-radius: var(--radius); padding: 18px; color: white; display: flex; align-items: center; gap: 15px; margin-bottom: 10px; box-shadow: var(--shadow-md);
+        }
+        .weather-temp-big { font-size: 38px; font-weight: 900; }
+        .weather-list {
+            display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; overflow-x: auto;
+        }
+        .w-item {
+            background: white; border-radius: 12px; padding: 8px 2px; text-align: center; border: 1px solid var(--border); box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+        .w-item.trip-day { background: #e0f2fe; border-color: #7dd3fc; }
+        .w-day-name { font-size: 10px; font-weight: 700; color: var(--text-sub); }
+        .w-date { font-size: 10px; color: #94a3b8; margin-bottom: 4px; }
+        .w-icon { font-size: 18px; margin: 4px 0; }
+        .w-rain { font-size: 10px; font-weight: 800; color: #ef4444; }
+        .w-temp-range { font-size: 9px; color: var(--text-main); font-weight: 600; }
 
-        /* ── 行程區 ── */
-        .day-header { display: flex; align-items: center; gap: 8px; padding: 12px 18px; margin: 24px 16px 10px; border-radius: 12px; background: #fff; border-left: 5px solid var(--kr-red); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .day-pill { background: var(--kr-blue); color: white; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 5px; }
+        /* ── TIMELINE ── */
+        .day-section { margin-top: 25px; }
+        .day-header {
+            display: flex; align-items: center; gap: 10px;
+            padding: 12px 18px; margin: 0 16px 8px;
+            border-radius: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .day-header.d1 { background: linear-gradient(90deg, #e0f2fe, transparent); }
+        .day-header.d2 { background: linear-gradient(90deg, #dcfce7, transparent); }
+        .day-header.d3 { background: linear-gradient(90deg, #fef3c7, transparent); }
+        .day-header.d4 { background: linear-gradient(90deg, #fce7f3, transparent); }
+        .day-header.d5 { background: linear-gradient(90deg, #f1f5f9, transparent); }
+        
+        .day-pill { background: var(--kr-blue); color: white; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 20px; }
         .day-label { font-size: 15px; font-weight: 900; }
+        .day-icon { width: 40px; height: 40px; margin-left: auto; }
 
         .timeline-wrap { padding: 0 16px; position: relative; }
-        .timeline-wrap::before { content: ''; position: absolute; left: 30px; top: 0; bottom: 0; width: 2px; background: #e2e8f0; }
-        .timeline-card { display: flex; gap: 15px; margin-bottom: 12px; }
-        .time-dot { width: 10px; height: 10px; border-radius: 50%; background: #cbd5e1; border: 2px solid white; margin-top: 18px; z-index: 1; flex-shrink: 0; }
-        .must .time-dot { background: var(--kr-red); }
+        .timeline-wrap::before { content: ''; position: absolute; left: 36px; top: 0; bottom: 0; width: 2px; background: #cbd5e1; }
+        
+        .timeline-card { display: flex; gap: 12px; margin-bottom: 12px; }
+        .time-dot { width: 12px; height: 12px; border-radius: 50%; background: #cbd5e1; border: 2px solid white; margin-top: 18px; z-index: 1; flex-shrink: 0; }
+        .must .time-dot { background: var(--kr-red); box-shadow: 0 0 0 4px rgba(205,46,58,0.2); }
 
-        .card-body { flex: 1; background: white; border-radius: 12px; padding: 12px; border: 1px solid var(--border); box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .must .card-body { border-left: 4px solid var(--kr-red); }
-        .t-time { color: var(--kr-blue); font-weight: 800; font-size: 13px; margin-bottom: 2px; display: block; }
-        .t-title { font-size: 15px; font-weight: 700; }
-        .t-desc { font-size: 13px; color: var(--text-sub); margin-top: 3px; }
-        .tag { font-size: 10px; padding: 1px 5px; border-radius: 4px; margin-left: 5px; font-weight: 800; }
-        .tag-order { background: #fee2e2; color: #ef4444; }
-        .tag-meal { background: #fef3c7; color: #92400e; }
+        .card-body { flex: 1; background: white; border-radius: 14px; padding: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--border); }
+        .must .card-body { border-left: 5px solid var(--kr-red); background: #fffafb; }
+        
+        .t-time { font-size: 13px; font-weight: 800; color: var(--kr-blue); margin-bottom: 2px; display: block; }
+        .t-title { font-size: 16px; font-weight: 800; }
+        .t-desc { font-size: 13px; color: var(--text-sub); margin-top: 4px; }
+        .tag { font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 5px; margin-left: 5px; }
+        .tag-meal { background: #fff7ed; color: #c2410c; }
+        .tag-must { background: #fee2e2; color: #dc2626; }
 
-        .footer { margin: 30px 16px; padding: 20px; background: #1e293b; color: white; border-radius: 20px; text-align: center; font-size: 13px; }
+        .footer { margin: 30px 16px; padding: 20px; background: #1e293b; color: white; border-radius: 20px; text-align: center; font-size: 12px; }
     </style>
 </head>
 <body>
@@ -85,240 +108,228 @@
 
     <header>
         <div class="hero-content">
-            <div class="header-badge">🇰🇷 BUSAN TRIP 2026</div>
+            <div class="header-badge">🇰🇷 BUSAN 2026</div>
             <h1>韓國釜山-小孩2歲前<br>出國最後衝刺放電</h1>
-            <p>4/30 (四) – 5/04 (一) ・ 5天4夜</p>
+            <p>2026/04/30 – 05/04 (5天4夜)</p>
         </div>
     </header>
 
     <div class="status-bar">
-        <div class="status-item">🛫 釜山登陸</div>
-        <div class="status-item">🧒 2歲前衝刺</div>
-        <div class="status-item">🌃 無人機秀</div>
+        <div class="status-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/330/330437.png">
+            <span class="s-label">韓國釜山</span>
+        </div>
+        <div class="status-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png">
+            <span class="s-label">燒肉大餐</span>
+        </div>
+        <div class="status-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/2534/2534204.png">
+            <span class="s-label">無人機秀</span>
+        </div>
     </div>
 
-    <div class="weather-box">
+    <div class="weather-section">
         <div class="weather-title">
-            <span>釜山 Busan 天氣預報</span>
-            <span class="update-time" id="update-time">更新中...</span>
+            <span>釜山即時天氣預報</span>
+            <span id="update-time" style="font-weight:400; font-size:10px;"></span>
         </div>
-        <div class="weather-current">
-            <div class="weather-temp-now" id="temp-now">--°</div>
-            <div style="font-size: 13px; font-weight: 700;">
-                <div id="weather-text">讀取中...</div>
-                <div style="color: var(--text-sub); font-weight: 400; font-size: 11px;">適合出國放電的好天氣！</div>
+        <div class="weather-current-card">
+            <div class="weather-temp-big" id="temp-now">--°</div>
+            <div>
+                <div style="font-weight:800; font-size:16px;" id="weather-text">晴時多雲</div>
+                <div style="font-size:12px; opacity:0.8;">適合出國放電的好天氣！</div>
             </div>
         </div>
-        <div class="weather-days" id="weather-days"></div>
+        <div class="weather-list" id="weather-list">
+            </div>
+        <div style="text-align:right; font-size:10px; color:var(--text-sub); margin-top:8px;">資料來源：Open-Meteo ・ 釜山 (35.17°N, 129.07°E)</div>
     </div>
 
-    <div class="day-header">
-        <div class="day-pill">DAY 1</div>
-        <div class="day-label">4/30 (四) 機場啟動・南浦洞</div>
-    </div>
-    <div class="timeline-wrap">
-        <div class="timeline-card must">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <span class="t-time">07:55</span>
-                <div class="t-title">🛫 桃園機場起飛</div>
-                <div class="t-desc">11:30 抵達釜山金海機場。</div>
-            </div>
+    <div class="day-section">
+        <div class="day-header d1">
+            <div class="day-pill">DAY 1</div>
+            <div class="day-label">4/30 (四) 釜山登陸</div>
+            <img src="https://cdn-icons-png.flaticon.com/512/723/723955.png" class="day-icon">
         </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <span class="t-time">中午</span>
-                <div class="t-title">包車接機・午餐 <span class="tag tag-meal">密陽豬肉湯飯</span></div>
-                <div class="t-desc">密陽豬肉湯飯 (富平店)。</div>
+        <div class="timeline-wrap">
+            <div class="timeline-card must">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <span class="t-time">07:55</span>
+                    <div class="t-title">🛫 桃園機場起飛</div>
+                    <div class="t-desc">11:30 抵達金海機場。開啟包車行程！</div>
+                </div>
             </div>
-        </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <div class="t-title">📍 192 希望階梯 / 買棉被</div>
-                <div class="t-desc">棉被店視體力調整。</div>
+            <div class="timeline-card">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <span class="t-time">午餐</span>
+                    <div class="t-title">🥣 密陽豬肉湯飯 <span class="tag tag-meal">釜山必吃</span></div>
+                    <div class="t-desc">密陽豬肉湯飯 (富平店)。</div>
+                </div>
             </div>
-        </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <div class="t-title">📍 松島海上纜車 / 龍宮雲橋</div>
+            <div class="timeline-card">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <div class="t-title">📍 松島海上纜車 / 龍宮雲橋</div>
+                    <div class="t-desc">高空俯瞰釜山美景。</div>
+                </div>
             </div>
-        </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <div class="t-title">📍 白淺灘文化村</div>
-                <div class="t-desc">Having Moment 咖啡廳上下車。</div>
+            <div class="timeline-card">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <div class="t-title">📍 白淺灘文化村</div>
+                    <div class="t-desc">Having Moment 咖啡廳上下車。</div>
+                </div>
             </div>
-        </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <div class="t-title">📍 藝術館 Arte Museum</div>
-            </div>
-        </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <span class="t-time">晚餐</span>
-                <div class="t-title">南浦洞富平豬腳 <span class="tag tag-meal">推薦</span></div>
+            <div class="timeline-card">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <span class="t-time">晚餐</span>
+                    <div class="t-title">🐷 南浦洞富平豬腳</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="day-header">
-        <div class="day-pill">DAY 2</div>
-        <div class="day-label">5/01 (五) 海雲台與汗蒸幕</div>
-    </div>
-    <div class="timeline-wrap">
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <div class="t-title">💤 睡到自然醒</div>
-            </div>
+    <div class="day-section">
+        <div class="day-header d2">
+            <div class="day-pill">DAY 2</div>
+            <div class="day-label">5/01 (五) 海雲台休閒</div>
+            <img src="https://cdn-icons-png.flaticon.com/512/1250/1250325.png" class="day-icon">
         </div>
-        <div class="timeline-card must">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <span class="t-time">12:00</span>
-                <div class="t-title">🥣 牛肋排湯飯午餐 <span class="tag tag-order">已訂位</span></div>
-                <div class="t-desc">소촌갈비찜 해里團路。</div>
+        <div class="timeline-wrap">
+            <div class="timeline-card">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <div class="t-title">💤 睡到自然醒</div>
+                </div>
             </div>
-        </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <div class="t-title">📍 Club D 汗蒸幕</div>
-                <div class="t-desc">海雲台逛街放電。</div>
+            <div class="timeline-card must">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <span class="t-time">12:00</span>
+                    <div class="t-title">🥣 牛肋排湯飯 <span class="tag tag-must">已訂位</span></div>
+                    <div class="t-desc">소촌갈비찜 海里團路。</div>
+                </div>
             </div>
-        </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <span class="t-time">晚餐</span>
-                <div class="t-title">海雲台夜市 + 飯店叫炸雞</div>
+            <div class="timeline-card">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <div class="t-title">🛀 Club D 汗蒸幕</div>
+                    <div class="t-desc">海雲台逛街放電。</div>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <div class="day-header">
-        <div class="day-pill">DAY 3</div>
-        <div class="day-label">5/02 (六) 膠囊火車・無人機秀</div>
-    </div>
-    <div class="timeline-wrap">
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <span class="t-time">10:00</span>
-                <div class="t-title">🏨 退房換飯店 (包車)</div>
-                <div class="t-desc">姊姊先現場買小火車票。</div>
-            </div>
-        </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <div class="t-title">📍 膠囊小火車</div>
-                <div class="t-desc">順序依買到票的時間為準。</div>
-            </div>
-        </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <span class="t-time">午餐</span>
-                <div class="t-title">🥣 一等家일등가</div>
-                <div class="t-desc">咖啡廳、樂天超市、透明步道。</div>
-            </div>
-        </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <div class="t-title">📍 X the Sky (100層)</div>
-            </div>
-        </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <span class="t-time">晚餐</span>
-                <div class="t-title">飯店附近烤韓牛 <span class="tag tag-meal">現場排</span></div>
-            </div>
-        </div>
-        <div class="timeline-card must">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <span class="t-time">20:00 / 22:00</span>
-                <div class="t-title">🚁 房間看無人機秀 <span class="tag tag-order">必看</span></div>
-                <div class="t-desc">18:00 需抵達飯店。</div>
+            <div class="timeline-card">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <span class="t-time">晚餐</span>
+                    <div class="t-title">🍗 夜市炸雞派對</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="day-header">
-        <div class="day-pill">DAY 4</div>
-        <div class="day-label">5/03 (日) 海生館時光</div>
-    </div>
-    <div class="timeline-wrap">
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <div class="t-title">💤 睡到自然醒</div>
-            </div>
+    <div class="day-section">
+        <div class="day-header d3">
+            <div class="day-pill">DAY 3</div>
+            <div class="day-label">5/02 (六) 夢幻小火車</div>
+            <img src="https://cdn-icons-png.flaticon.com/512/821/821353.png" class="day-icon">
         </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <span class="t-time">午餐</span>
-                <div class="t-title">海雲台豬肉湯飯</div>
+        <div class="timeline-wrap">
+            <div class="timeline-card">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <span class="t-time">10:00</span>
+                    <div class="t-title">🏨 退房換飯店 (包車)</div>
+                    <div class="t-desc">姊姊先現場買小火車票！</div>
+                </div>
             </div>
-        </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <div class="t-title">📍 Sea Life 海生館</div>
+            <div class="timeline-card must">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <div class="t-title">🚃 膠囊小火車 <span class="tag tag-must">重要行程</span></div>
+                    <div class="t-desc">順序依票卷時間動態調整。</div>
+                </div>
             </div>
-        </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <span class="t-time">晚餐</span>
-                <div class="t-title">待定</div>
+            <div class="timeline-card">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <div class="t-title">📍 X the Sky (100層)</div>
+                    <div class="t-desc">透明步道、樂天超市購物。</div>
+                </div>
+            </div>
+            <div class="timeline-card">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <span class="t-time">晚餐</span>
+                    <div class="t-title">🥩 烤韓牛大餐 <span class="tag tag-meal">現場排</span></div>
+                </div>
+            </div>
+            <div class="timeline-card must">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <span class="t-time">20:00 / 22:00</span>
+                    <div class="t-title">🚁 房間看無人機秀</div>
+                    <div class="t-desc">18:00 需抵達飯店。</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="day-header">
-        <div class="day-pill">DAY 5</div>
-        <div class="day-label">5/04 (一) 最終衝刺與回程</div>
+    <div class="day-section">
+        <div class="day-header d4">
+            <div class="day-pill">DAY 4</div>
+            <div class="day-label">5/03 (日) 海生館冒險</div>
+            <img src="https://cdn-icons-png.flaticon.com/512/3222/3222854.png" class="day-icon">
+        </div>
+        <div class="timeline-wrap">
+            <div class="timeline-card">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <div class="t-title">🐠 Sea Life 海生館</div>
+                </div>
+            </div>
+            <div class="timeline-card">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <span class="t-time">晚餐</span>
+                    <div class="t-title">待定</div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="timeline-wrap">
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <span class="t-time">11:00</span>
-                <div class="t-title">🏨 退房與寄放行李</div>
-                <div class="t-desc">買貝果、吃午餐 (待定)。</div>
-            </div>
+
+    <div class="day-section">
+        <div class="day-header d5">
+            <div class="day-pill">DAY 5</div>
+            <div class="day-label">5/04 (一) 最終衝刺</div>
+            <img src="https://cdn-icons-png.flaticon.com/512/2400/2400508.png" class="day-icon">
         </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <div class="t-title">📍 海雲台 Hillspa 汗蒸幕</div>
+        <div class="timeline-wrap">
+            <div class="timeline-card">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <span class="t-time">11:00</span>
+                    <div class="t-title">🏨 退房與寄放行李</div>
+                    <div class="t-desc">買貝果、吃午餐。</div>
+                </div>
             </div>
-        </div>
-        <div class="timeline-card">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <span class="t-time">晚餐</span>
-                <div class="t-title">待定</div>
+            <div class="timeline-card">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <div class="t-title">🛀 Hillspa 汗蒸幕</div>
+                    <div class="t-desc">最後的放鬆。</div>
+                </div>
             </div>
-        </div>
-        <div class="timeline-card must">
-            <div class="time-dot"></div>
-            <div class="card-body">
-                <span class="t-time">18:30</span>
-                <div class="t-title">🚙 出發前往機場</div>
-                <div class="t-desc">22:30 飛機起飛 🛫 / 23:40 抵桃園。</div>
+            <div class="timeline-card must">
+                <div class="time-dot"></div>
+                <div class="card-body">
+                    <span class="t-time">18:30</span>
+                    <div class="t-title">🚙 出發前往機場</div>
+                    <div class="t-desc">22:30 起飛 🛫 / 23:40 抵桃園。</div>
+                </div>
             </div>
         </div>
     </div>
@@ -339,43 +350,33 @@
             const res = await fetch(url);
             const data = await res.json();
             
-            // 更新時間
-            const now = new Date();
-            document.getElementById('update-time').innerText = `最新更新：${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`;
-            
-            // 當前氣溫
+            document.getElementById('update-time').innerText = `最新更新：${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
             document.getElementById('temp-now').innerText = Math.round(data.current.temperature_2m) + '°';
-            
-            // 當前狀態文字
-            const code = data.current.weather_code;
-            let statusText = "晴朗好天氣";
-            if(code > 3) statusText = "有點多雲";
-            if(code > 50) statusText = "記得帶傘喔";
-            document.getElementById('weather-text').innerText = statusText;
 
-            // 一週列表
-            const daysContainer = document.getElementById('weather-days');
-            daysContainer.innerHTML = '';
+            const list = document.getElementById('weather-list');
+            list.innerHTML = '';
             const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
-            
-            data.daily.time.forEach((dateStr, i) => {
-                const date = new Date(dateStr);
-                const dayName = weekdays[date.getDay()];
-                const rain = data.daily.precipitation_probability_max[i];
-                const max = Math.round(data.daily.temperature_2m_max[i]);
-                const min = Math.round(data.daily.temperature_2m_min[i]);
-                
-                daysContainer.innerHTML += `
-                    <div class="w-day">
-                        <div style="font-weight:800">${dayName}</div>
-                        <div class="w-hi-lo">${max}°/${min}°</div>
-                        <div class="w-rain">☔${rain}%</div>
+            const tripDates = ['2026-04-30', '2026-05-01', '2026-05-02', '2026-05-03', '2026-05-04'];
+
+            data.daily.time.forEach((dStr, i) => {
+                const date = new Date(dStr);
+                const isTrip = tripDates.includes(dStr) ? 'trip-day' : '';
+                const code = data.daily.weather_code[i];
+                let icon = '☀️';
+                if(code > 3) icon = '☁️';
+                if(code > 50) icon = '🌧️';
+
+                list.innerHTML += `
+                    <div class="w-item ${isTrip}">
+                        <div class="w-day-name">${weekdays[date.getDay()]}</div>
+                        <div class="w-date">${date.getMonth()+1}/${date.getDate()}</div>
+                        <div class="w-icon">${icon}</div>
+                        <div class="w-rain">${data.daily.precipitation_probability_max[i]}%</div>
+                        <div class="w-temp-range">${Math.round(data.daily.temperature_2m_max[i])}°/${Math.round(data.daily.temperature_2m_min[i])}°</div>
                     </div>
                 `;
             });
-        } catch(e) {
-            document.getElementById('update-time').innerText = "連線失敗";
-        }
+        } catch(e) { }
     }
     fetchWeather();
 </script>
