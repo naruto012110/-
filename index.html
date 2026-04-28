@@ -10,7 +10,7 @@
         :root {
             --kr-red: #CD2E3A;
             --kr-blue: #0047A0;
-            --time-orange: #f97316; /* 顯眼橘色 */
+            --time-orange: #f97316; /* 顯眼亮橘色時間 */
             --bg: #f1f5f9;
             --card-bg: #ffffff;
             --text-main: #1e293b;
@@ -45,7 +45,7 @@
         .status-item .s-icon { font-size: 32px; display: block; margin-bottom: 5px; }
         .status-item span { font-size: 11px; font-weight: 800; color: var(--kr-blue); display: block; }
 
-        /* ── 天氣 ── */
+        /* ── 天氣預報 ── */
         .weather-box { margin: 20px 16px 0; background: #fff; border-radius: var(--radius); padding: 15px; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .w-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 13px; font-weight: 900; }
         .w-list { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
@@ -73,7 +73,7 @@
         .day-title-text { font-size: 16px; font-weight: 900; letter-spacing: 0.5px; }
         .day-header-icon { font-size: 28px; margin-left: auto; }
 
-        /* ── 垂直時間軸 ── */
+        /* ── 行程細節 ── */
         .timeline-wrap { padding: 0 16px; position: relative; }
         .timeline-wrap::before { content: ''; position: absolute; left: 36px; top: 0; bottom: 0; width: 2px; background: #e2e8f0; }
         
@@ -124,7 +124,7 @@
     <div class="weather-box">
         <div class="w-title-row">
             <span>釜山即時天氣預報</span>
-            <span id="update-time" style="font-weight:400; font-size:10px;"></span>
+            <span id="update-time" style="font-weight:400; font-size:10px; color:var(--text-sub);"></span>
         </div>
         <div class="w-list" id="weather-list"></div>
         <div style="text-align:right; font-size:9px; color:#94a3b8; margin-top:10px;">資料來源：Open-Meteo ・ 釜山 (35.17°N, 129.07°E)</div>
@@ -152,7 +152,7 @@
                 <div>
                     <span class="t-time">午餐</span>
                     <div class="t-title">密陽豬肉湯飯 (富平店)</div>
-                    <div class="t-desc">밀양순대돼지국밥 부평점。</div>
+                    <div class="t-desc">밀양순대돼지國밥 부평점。</div>
                 </div>
             </div>
         </div>
@@ -238,7 +238,7 @@
 
     <div class="day-header-box d-box-3">
         <div class="day-num-pill">DAY 3</div>
-        <div class="day-title-text">5/02 (六) 膠囊火車・無人機秀</div>
+        <div class="day-title-text">5/02 (六) 小火車・無人機秀</div>
         <div class="day-header-icon">🚁</div>
     </div>
     <div class="timeline-wrap">
@@ -248,7 +248,7 @@
                 <div>
                     <span class="t-time">10:00</span>
                     <div class="t-title">10:00 退房+寄放行李出發換飯店</div>
-                    <div class="t-desc">11:00 退房。姊姊先現場去現場買膠囊小火車票！</div>
+                    <div class="t-desc">11:00 前辦理退房。姊姊先去現場買膠囊小火車票！</div>
                 </div>
             </div>
         </div>
@@ -267,7 +267,7 @@
                 <div>
                     <span class="t-time">午餐</span>
                     <div class="t-title">一等家일등가</div>
-                    <div class="t-desc">海邊咖啡、樂天超市購物、透明步道。</div>
+                    <div class="t-desc">吃飽後去海邊咖啡、樂天超市購物、透明步道。</div>
                 </div>
             </div>
         </div>
@@ -347,8 +347,8 @@
                 <div class="icon-box bg-blue">🏨</div>
                 <div>
                     <span class="t-time">11:00</span>
-                    <div class="t-title">退房+寄放行李</div>
-                    <div class="t-desc">步行去買貝果、吃午餐 (待定)。</div>
+                    <div class="t-title">11:00 退房+寄放行李</div>
+                    <div class="t-desc">散步去買貝果、吃午餐 (待定)。</div>
                 </div>
             </div>
         </div>
@@ -380,7 +380,7 @@
     </div>
 
     <div class="footer">
-        <div style="font-weight: 900; font-size: 16px; margin-bottom: 5px; color:white;">平安第一，玩得盡興 🇰🇷</div>
+        <div style="font-weight: 800; font-size: 15px; margin-bottom: 5px; color:white;">平安第一，玩得盡興 🇰🇷</div>
         韓國釜山-小孩2歲前出國最後衝刺放電 手冊2026
     </div>
 
@@ -390,20 +390,32 @@
     async function fetchWeather() {
         const LAT = 35.17, LON = 129.07;
         const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&forecast_days=7`;
+        
         try {
             const res = await fetch(url);
             const data = await res.json();
             document.getElementById('update-time').innerText = `最新更新：${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
+
             const list = document.getElementById('weather-list');
             list.innerHTML = '';
             const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
             const tripDates = ['2026-04-30', '2026-05-01', '2026-05-02', '2026-05-03', '2026-05-04'];
+
             data.daily.time.forEach((dStr, i) => {
                 const date = new Date(dStr);
                 const isTrip = tripDates.includes(dStr) ? 'active' : '';
                 const code = data.daily.weather_code[i];
                 let icon = '☀️'; if(code > 3) icon = '☁️'; if(code > 50) icon = '🌧️';
-                list.innerHTML += `<div class="w-col ${isTrip}"><div class="w-name">${weekdays[date.getDay()]}</div><div class="w-date">${date.getMonth()+1}/${date.getDate()}</div><div class="w-icon">${icon}</div><div class="w-rain">${data.daily.precipitation_probability_max[i]}%</div><div class="w-temp">${Math.round(data.daily.temperature_2m_max[i])}°/${Math.round(data.daily.temperature_2m_min[i])}°</div></div>`;
+
+                list.innerHTML += `
+                    <div class="w-col ${isTrip}">
+                        <div class="w-name">${weekdays[date.getDay()]}</div>
+                        <div class="w-date">${date.getMonth()+1}/${date.getDate()}</div>
+                        <div class="w-icon">${icon}</div>
+                        <div class="w-rain">${data.daily.precipitation_probability_max[i]}%</div>
+                        <div class="w-temp">${Math.round(data.daily.temperature_2m_max[i])}°/${Math.round(data.daily.temperature_2m_min[i])}°</div>
+                    </div>
+                `;
             });
         } catch(e) { }
     }
