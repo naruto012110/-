@@ -37,13 +37,12 @@
         }
         header h1 { font-size: 22px; font-weight: 900; line-height: 1.4; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
 
-        /* ── TOP 3 ICONS (已修正國旗) ── */
+        /* ── TOP 3 ICONS (採用 Emoji 確保永不破圖) ── */
         .status-bar {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 16px; margin-top: -30px; position: relative; z-index: 10;
         }
         .status-item { background: white; padding: 15px 5px; border-radius: 14px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.9); }
-        .status-item .flag-img { width: 45px; height: 30px; object-fit: contain; margin-bottom: 5px; border: 1px solid #eee; border-radius: 2px; }
-        .status-item .s-icon { font-size: 32px; display: block; margin-bottom: 5px; }
+        .status-item .s-icon { font-size: 36px; display: block; margin-bottom: 5px; line-height: 1; }
         .status-item span { font-size: 11px; font-weight: 800; color: var(--kr-blue); display: block; }
 
         /* ── 天氣 ── */
@@ -109,7 +108,7 @@
 
     <div class="status-bar">
         <div class="status-item">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_South_Korea.svg/128px-Flag_of_South_Korea.svg.png" class="flag-img" alt="韓國國旗">
+            <span class="s-icon">🇰🇷</span>
             <span>韓國</span>
         </div>
         <div class="status-item">
@@ -153,7 +152,7 @@
                 <div>
                     <span class="t-time">午餐</span>
                     <div class="t-title">密陽豬肉湯飯 (富平店)</div>
-                    <div class="t-desc">밀양순대돼지국밥 부평점。</div>
+                    <div class="t-desc">밀양순대돼지국밥 부評店用餐。</div>
                 </div>
             </div>
         </div>
@@ -201,7 +200,7 @@
     <div class="day-header-box d-box-2">
         <div class="day-num-pill">DAY 2</div>
         <div class="day-title-text">5/01 (五) 海雲台休閒</div>
-        <div class="day-header-icon">🛀</div>
+        <div class="day-header-icon">🚿</div>
     </div>
     <div class="timeline-wrap">
         <div class="timeline-card">
@@ -349,7 +348,7 @@
                 <div>
                     <span class="t-time">11:00</span>
                     <div class="t-title">11:00 退房+寄放行李</div>
-                    <div class="t-desc">步行去買貝果、吃午餐 (待定)。</div>
+                    <div class="t-desc">散步去買貝果、吃午餐 (待定)。</div>
                 </div>
             </div>
         </div>
